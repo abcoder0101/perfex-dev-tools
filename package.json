@@ -2,6 +2,7 @@
   "name": "perfex-dev-tools",
   "displayName": "perfex-dev-tools",
   "description": "extension que facilite el desarrollo de modulos y temas, que tenga scaffolding y snippets",
+  "publisher": "AbrahamJosCorderoPrez",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.91.0"
@@ -9,6 +10,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcoder0101/perfex-dev-tools.git"
+},
   "activationEvents": [
      "onCommand:perfex-dev-tools.createModule"
   ],
