@@ -1,0 +1,106 @@
+{
+    "Module Activation Hook": {
+        "prefix": "pxModuleActivationHook",
+        "body": [
+            
+            "/**",
+            "* Register activation module hook",
+            "*/",
+            "register_activation_hook(MODULE_NAME, 'module_activation_hook');",
+            "function module_activation_hook()",
+            "{",
+            "    require_once(__DIR__ + '/install.php');",
+            "}"
+        ],
+        "description": "Snippet for module activation hook."
+    },
+    "Register Language Files": {
+        "prefix": "pxRegisterLanguageFiles",
+        "body": [
+            
+            "register_language_files(MODULE_NAME, [MODULE_NAME]);"
+        ],
+        "description": "Snippet for registering language files."
+    },
+    "Init Menu Items": {
+        "prefix": "pxInitMenuItems",
+        "body": [
+            
+            "hooks()->add_action('admin_init', 'module_init_menu_items');",
+            "function module_init_menu_items()",
+            "{",
+            "    if (is_admin()) {",
+            "        \\$CI = &get_instance();",
+            "        \\$CI->app_menu->add_sidebar_menu_item('module-options', [",
+            "            'collapse' => true,",
+            "            'name'     => _l('module'),",
+            "            'position' => 40,",
+            "            'icon'     => 'fa fa-cogs',",
+            "        ]);",
+            "        \\$CI->app_menu->add_sidebar_children_item('module-options', [",
+            "            'slug'     => 'module-guide-options',",
+            "            'name'     => _l('module_guide'),",
+            "            'href'     => 'example.com',",
+            "            'position' => 10,",
+            "        ]);",
+            "    }",
+            "}"
+        ],
+        "description": "Snippet for initializing menu items."
+    },
+    "Add Settings Tab": {
+        "prefix": "pxAddSettingsTab",
+        "body": [
+            
+            "hooks()->add_action('admin_init', 'module_add_settings_tab');",
+            "function module_add_settings_tab()",
+            "{",
+            "    \\$CI = &get_instance();",
+            "    \\$CI->app_tabs->add_settings_tab('module_settings', [",
+            "        'name'     => _l('module_settings'),",
+            "        'view'     => MODULE_NAME + '/module_settings_view',",
+            "        'position' => 101,",
+            "    ]);",
+            "}"
+        ],
+        "description": "Snippet for adding a settings tab."
+    },
+    "Register Staff Capabilities": {
+        "prefix": "pxRegisterStaffCapabilities",
+        "body": [
+            
+            "hooks()->add_action('admin_init', 'module_register_staff_capabilities');",
+            "function module_register_staff_capabilities()",
+            "{",
+            "    \\$capabilities = [];",
+            "    \\$capabilities['capabilities'] = [",
+            "        'view'   => _l('permission_view') + '(' + _l('permission_global') + ')',",
+            "        'create' => _l('permission_create'),",
+            "        'edit'   => _l('permission_edit'),",
+            "        'delete' => _l('permission_delete'),",
+            "    ];",
+            "    register_staff_capabilities('module_capabilities', \\$capabilities, _l('module_capabilities'));",
+            "}"
+        ],
+        "description": "Snippet for registering staff capabilities."
+    },
+    "Clients Init Hook": {
+        "prefix": "pxClientsInitHook",
+        "body": [
+            
+            "hooks()->add_action('clients_init', 'module_clients_init');",
+            "",
+            "function module_clients_init() {",
+            "    \\$button = get_option('module_button_option');",
+            "    if (\\$button != '' && is_client_logged_in()) {",
+            "        add_theme_menu_item('module-client', [",
+            "            'name'     => _l(\\$button),",
+            "            'href'     => site_url('#'),",
+            "            'position' => 99,",
+            "        ]);",
+            "    }",
+            "}"
+        ],
+        "description": "Snippet for clients init hook."
+    }
+}
